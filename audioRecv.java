@@ -9,7 +9,7 @@ public class audioRecv {
             DatagramSocket socket = new DatagramSocket(recvPort, InetAddress.getLocalHost());
             byte buffer[] = new byte[172];
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-            AudioFormat format = new AudioFormat(44000, 16, 2, false, false);
+            AudioFormat format = new AudioFormat(44000, 16, 2, true, false);
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
             SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
 
