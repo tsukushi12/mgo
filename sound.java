@@ -6,8 +6,9 @@ public class sound {
            File audioFile = new File("musicbox.wav");
            AudioInputStream stream = AudioSystem.getAudioInputStream(audioFile);
            byte buffer[] = new byte[1600];
-           System.out.println("test");
            AudioFormat format = stream.getFormat();
+           
+           System.out.println(format.getProperty());
 //ソースデータライン取得
            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
            SourceDataLine line = (SourceDataLine)AudioSystem.getLine(info);

@@ -2,31 +2,38 @@ package packet;
 import javax.sound.sampled.*;
 import java.io.*;
 import java.net.*;
-import RTPPacket;
-import java.io.*;
+import packet.RTPPacket;
 public class DGSocket {
     String destIP;
     int destPort;
-    DatagramSocket scok;
+    DatagramSocket sock;
     InetSocketAddress destAddr;
     DatagramPacket packet;
-     Sender(String ip, int port){
-         destIP = ip;
-         destPort = port;
-         sock = new DatagramSocket();
-         destAddr = new InetSocketAddress(destIP, destPort);
+     public DGSocket(String ip, int port){
+         try{
+            destIP = ip;
+            destPort = port;
+            sock = new DatagramSocket();
+            destAddr = new InetSocketAddress(destIP, destPort);
+         }catch(Exception e){
+            e.printStackTrace();
+        }
      }
-     public boolean send(String msg){
+     public void send(String msg){
          
      }
      public void sendRTP(byte audioPacket[]){
-         RTPPacket rtp = new RTPPacket(audioPacket);
-         packet = packet.getRTP();
-         socket.send(packet);
+         try{
+            RTPPacket rtp = new RTPPacket(audioPacket);
+            packet = rtp.getRTP(destAddr);
+            sock.send(packet);
+         }catch(Exception e){
+            e.printStackTrace();
+        }
      }
 
 
      public void close(){
-         socket.close();
+         sock.close();
      }
 }

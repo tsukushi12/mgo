@@ -18,7 +18,7 @@ public class RTPPacket{
     byte payload     = 0;
     ByteArrayOutputStream out;
 
-    RTPPacket(byte audioPacket[]){
+    public RTPPacket(byte audioPacket[]){
         rtpHeader[0] = (byte)(version | padding | extention | contribute);
         rtpHeader[1]  = (byte)(marker | payload);
         rtpHeader[2]  = (byte)(sequenceNum >> 8);
